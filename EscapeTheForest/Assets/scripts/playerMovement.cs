@@ -8,6 +8,7 @@ public class playerMovement : MonoBehaviour {
     float jumpSpeed = 2;
     public Rigidbody rb;
     public bool isJumping = false;
+    bool doubleJump = false;
     
 
 	// Use this for initialization
@@ -42,12 +43,15 @@ public class playerMovement : MonoBehaviour {
 
                 
                 // transform.Translate(Vector3.up * 0 * Time.deltaTime);
-                Debug.Log("hi");
+                //Debug.Log("hi");
 
                 rb.AddForce(0, 10000 * jumpSpeed * Time.deltaTime, 0);
                 isJumping = true;
 
             }
+
+            
+
         }
         else if (isJumping == true)
         {
@@ -57,10 +61,26 @@ public class playerMovement : MonoBehaviour {
                 isJumping = false;
 
             }
-           
+
+            else if (doubleJump == true)
+            { 
+                if (transform.position.y >= 6) isJumping = true;
+
+                else if (transform.position.y >= 5.2)
+                {
+
+
+
+                    isJumping = false;
+
+
+                }
+            }
+             
         }
         
+
         
-        
+
     }
 }
