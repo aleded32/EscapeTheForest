@@ -8,7 +8,7 @@ public class playerMovement : MonoBehaviour {
     float jumpSpeed = 2;
     public Rigidbody rb;
     public bool isJumping = false;
-    bool doubleJump = false;
+    bool doubleJump = true;
     
 
 	// Use this for initialization
@@ -62,7 +62,7 @@ public class playerMovement : MonoBehaviour {
 
             }
 
-            else if (doubleJump == true)
+            else if (doubleJump == false)
             { 
                 if (transform.position.y >= 6) isJumping = true;
 
