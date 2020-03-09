@@ -5,14 +5,14 @@ using UnityEngine;
 public class enemyMovement : MonoBehaviour {
 
 
-    float enemySpeed = 15f;
-    public GameObject player;
+    float enemySpeed = 10f;
+    private GameObject player;
 
 
     // Use this for initialization
     void Start()
     {
-
+        player = GameObject.Find("Cube");
     }
 
     // Update is called once per frame
