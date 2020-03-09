@@ -37,7 +37,7 @@ public class playerMovement : MonoBehaviour {
 
         if (isJumping == false)
         {
-            if (Input.GetKeyDown(KeyCode.W))
+            if (Input.GetKey(KeyCode.W))
             {
 
 
