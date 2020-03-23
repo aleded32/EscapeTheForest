@@ -1,7 +1,0 @@
-What's new./ 
-
-This is basically to keep up to date on what has been adeed when and where
-
-V1.1 - enemies now spawn, dynamic jumping has been added, so the player will jump higher and further the longer the button is pressed.
-
-Next Steps... Collsion with enemies, scoring system, background scrolls... animations. 

@@ -18,7 +18,7 @@ public class enemySpawning : MonoBehaviour {
         objects[0] = enemyNM;
         objects[1] = enemyM;
 
-        for (int i = 1; i <= 10; i++)
+        for (int i = 1; i <= 20; i++)
         {
             int rand = Random.Range(0, 2);
 
