@@ -7,25 +7,25 @@ public class playerCollision : MonoBehaviour {
 
     int hitCount = 0;
     float time = 0.3f;
+    public int notes = 0;
     public AudioSource audio;
     public AudioSource audioDebuff;
     public AudioClip normal;
     public AudioClip debuff;
 
-    void Update() 
-    {
-
-        Debug.Log(hitCount);
-    }
+    
     
     private void OnCollisionEnter(Collision collision)
     {
+
 
         if (collision.gameObject.tag == "Enemy")
         {
             Debug.Log(1);
             SceneManager.LoadScene("GameScreen");
         }
+
+        
 
     }
 

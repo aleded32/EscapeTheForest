@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Enemy
   - Obstacle
+  - notes
+  - notes1
+  - notes2
+  - notes3
+  - note
   layers:
   - Default
   - TransparentFX

@@ -13,7 +13,7 @@ public class platformSpawning : MonoBehaviour {
         {
             
 
-            Instantiate(platform, new Vector3(i * 60.0f, 5.6f), Quaternion.identity);
+            Instantiate(platform, new Vector3(i * 78.0f, 5.6f), Quaternion.identity);
 
         }
 	}
