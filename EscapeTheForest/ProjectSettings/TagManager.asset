@@ -11,6 +11,10 @@ TagManager:
   - notes2
   - notes3
   - note
+  - menu
+  - invincible
+  - mushroom
+  - slowdown
   layers:
   - Default
   - TransparentFX

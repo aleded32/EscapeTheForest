@@ -5,25 +5,36 @@ using UnityEngine;
 public class playerMovement : MonoBehaviour {
 
     public float speed = 10f;
-    float jumpSpeed = 2;
+    public float jumpSpeed = 2;
     public Rigidbody rb;
     public bool isJumping = false;
-    bool doubleJump = true;
-    
+    public bool doubleJump = false;
+    public GameObject pauseMenu;
+    public bool isPaused = false;
+    bool gameStart = false;
 
-	// Use this for initialization
-	void Start () {
-		
+      
 
-
-	}
+	
 	
 	// Update is called once per frame
 	void Update () {
 
-       
-        transform.Translate(Vector3.right * speed * Time.deltaTime);
+        if (Input.GetKey(KeyCode.Space)) 
+        {
+            gameStart = true;
+        }
 
+        if (gameStart == true)
+        {
+
+            if (isPaused == false)
+            {
+
+                transform.Translate(Vector3.right * speed * Time.deltaTime);
+            }
+
+        }
         
         
 
@@ -32,54 +43,88 @@ public class playerMovement : MonoBehaviour {
 
     void FixedUpdate()
     {
+        //menu control
 
 
-
-        if (isJumping == false)
+       if (Input.GetKey(KeyCode.P) && isPaused == false )
         {
-            if (Input.GetKey(KeyCode.W))
-            {
 
-
-                
-                // transform.Translate(Vector3.up * 0 * Time.deltaTime);
-                //Debug.Log("hi");
-
-                rb.AddForce(0, 10000 * jumpSpeed * Time.deltaTime, 0);
-                isJumping = true;
-
-            }
-
-            
-
+            isPaused = true;
         }
-        else if (isJumping == true)
+
+        if (isPaused == true)
         {
-            if (transform.position.y <= 3.2)
+            pauseMenu.SetActive(true);
+        }
+        else
+        {
+            pauseMenu.SetActive(false);
+        }
+
+
+        //Jumping
+
+        if (isPaused == false)
+        {
+
+            if (isJumping == false)
             {
-
-                isJumping = false;
-
-            }
-
-            else if (doubleJump == false)
-            { 
-                if (transform.position.y >= 6) isJumping = true;
-
-                else if (transform.position.y >= 5.2)
+                if (Input.GetKey(KeyCode.W))
                 {
 
 
 
-                    isJumping = false;
+                    // transform.Translate(Vector3.up * 0 * Time.deltaTime);
+                    //Debug.Log("hi");
 
+                    rb.AddForce(0, 8000 * 2 * Time.deltaTime, 0);
+                    isJumping = true;
 
                 }
+
+
+
             }
-             
+            else if (isJumping == true)
+            {
+                if (transform.position.y <= 3.2)
+                {
+
+                    isJumping = false;
+
+                }
+
+                else if (doubleJump == false)
+                {
+                    if (transform.position.y >= 5) isJumping = true;
+
+                    else if (transform.position.y >= 4.2)
+                    {
+
+
+                        if (Input.GetKey(KeyCode.W))
+                        {
+
+
+
+                            // transform.Translate(Vector3.up * 0 * Time.deltaTime);
+                            //Debug.Log("hi");
+
+                            rb.AddForce(0, 400 * 2 * Time.deltaTime, 0);
+                            isJumping = true;
+
+                        }
+                        
+
+
+                    }
+                }
+
+            }
+
+
         }
         
-
         
 
     }
