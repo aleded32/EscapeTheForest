@@ -123,7 +123,6 @@ GameObject:
   - component: {fileID: 13001148}
   - component: {fileID: 13001147}
   - component: {fileID: 13001146}
-  - component: {fileID: 13001145}
   - component: {fileID: 13001144}
   - component: {fileID: 13001143}
   - component: {fileID: 13001142}
@@ -180,19 +179,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 120
-  m_CollisionDetection: 0
---- !u!65 &13001145
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 13001141}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_CollisionDetection: 1
 --- !u!23 &13001146
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -242,7 +229,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 13001141}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.8, y: 3.18, z: -0.359375}
+  m_LocalPosition: {x: 0.8, y: 3.18, z: -0.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -265,11 +252,8 @@ MonoBehaviour:
   normal: {fileID: 8300000, guid: 86207471707ae5248a5d173d02a3ff35, type: 3}
   debuff: {fileID: 8300000, guid: b78c22f9acdd0d74182fff474da24315, type: 3}
   player: {fileID: 13001141}
-  invincible: {fileID: 1060898232052686, guid: ff2dea0ba894dae40ad8b63db2252711, type: 2}
-  mushroom: {fileID: 1571267280108282, guid: fca486b4208555f4ebd9a6edeab6a502, type: 2}
-  slowdown: {fileID: 1918896424018980, guid: 79d9943f49c5c9740b677728bc3bca0b, type: 2}
-  enemyM: {fileID: 1078243247768246, guid: 1804c95c4c4c3b144a63607a1fc5943d, type: 2}
-  enemyNM: {fileID: 1513804459297248, guid: 0fe695931f0b15e45ba2e942540cb25b, type: 2}
+  powerup: {fileID: 1980972480}
+  isInvincible: 0
 --- !u!114 &13001150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -366,7 +350,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 86207471707ae5248a5d173d02a3ff35, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1695,6 +1679,91 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 13001141}
   scoreText: {fileID: 1892929544}
+--- !u!1 &1980972480
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1980972484}
+  - component: {fileID: 1980972483}
+  - component: {fileID: 1980972482}
+  - component: {fileID: 1980972481}
+  m_Layer: 0
+  m_Name: powerup
+  m_TagString: powerup
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!135 &1980972481
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1980972480}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1980972482
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1980972480}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &1980972483
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1980972480}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1980972484
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1980972480}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.85, y: 3.51, z: 0.01}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2018650365
 GameObject:
   m_ObjectHideFlags: 0
@@ -1816,7 +1885,6 @@ GameObject:
   - component: {fileID: 2027414448}
   - component: {fileID: 2027414449}
   - component: {fileID: 2027414450}
-  - component: {fileID: 2027414451}
   m_Layer: 0
   m_Name: Spawning
   m_TagString: Untagged
@@ -1851,6 +1919,7 @@ MonoBehaviour:
   enemyNM: {fileID: 1513804459297248, guid: 0fe695931f0b15e45ba2e942540cb25b, type: 2}
   enemyM: {fileID: 1078243247768246, guid: 1804c95c4c4c3b144a63607a1fc5943d, type: 2}
   objects: []
+  enemies: {fileID: 0}
 --- !u!114 &2027414450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1863,21 +1932,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   platform: {fileID: 1343020944882858, guid: b36a77842c53ebd41950c7cf3d160024, type: 2}
---- !u!114 &2027414451
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2027414447}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ed2d84f15a61f942b69f5894434ecb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  invincible: {fileID: 1060898232052686, guid: ff2dea0ba894dae40ad8b63db2252711, type: 2}
-  slowdown: {fileID: 1918896424018980, guid: 79d9943f49c5c9740b677728bc3bca0b, type: 2}
-  mushroom: {fileID: 1571267280108282, guid: fca486b4208555f4ebd9a6edeab6a502, type: 2}
-  randPowerup: []
 --- !u!1 &2076809086
 GameObject:
   m_ObjectHideFlags: 0

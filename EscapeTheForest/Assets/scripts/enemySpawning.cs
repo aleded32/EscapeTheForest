@@ -2,17 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class enemySpawning : MonoBehaviour {
+public class enemySpawning : MonoBehaviour
+{
 
-    
+
     public GameObject enemyNM;
     public GameObject enemyM;
-    public GameObject [] objects;
-   
+    public GameObject[] objects;
+    public GameObject enemies;
 
 
-	// Use this for initialization
-	void Start ()
+
+    // Use this for initialization
+    public void Start()
     {
         objects = new GameObject[2];
         objects[0] = enemyNM;
@@ -22,16 +24,12 @@ public class enemySpawning : MonoBehaviour {
         {
             int rand = Random.Range(0, 2);
 
-            Instantiate(objects[rand], new Vector3(i * 25.0f, 3.18f), Quaternion.identity);
+           enemies =  Instantiate(objects[rand], new Vector3(i * 25.0f, 3.18f), Quaternion.identity);
 
         }
     }
-	
-	// Update is called once per frame
-	void Update ()
-    {
 
-        
+    
 
-	}
+
 }

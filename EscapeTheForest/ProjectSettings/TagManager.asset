@@ -15,6 +15,7 @@ TagManager:
   - invincible
   - mushroom
   - slowdown
+  - powerup
   layers:
   - Default
   - TransparentFX

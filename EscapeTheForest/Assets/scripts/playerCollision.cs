@@ -7,54 +7,57 @@ public class playerCollision : MonoBehaviour {
 
     int hitCount = 0;
     float time = 0.3f;
+    float timeInvicible = 0.08f;
+    float timeMushroom = 0.05f;
+    float timeSlowdown = 0.08f;
     public int notes = 0;
     public AudioSource audio;
     public AudioSource audioDebuff;
     public AudioClip normal;
     public AudioClip debuff;
     public GameObject player;
-    public GameObject invincible;
-    public GameObject mushroom;
-    public GameObject slowdown;
-    public GameObject enemyM;
-    public GameObject enemyNM;
+    public GameObject powerup;
+    public bool isInvincible = false;
 
-
-
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-
-
-        if (collision.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Enemy" && isInvincible == false)
         {
             Debug.Log(1);
             SceneManager.LoadScene("GameScreen");
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+
+       
 
 
-        if (collision.gameObject.tag == "invincible")
+        if (collision.gameObject.tag == "powerup")
         {
-            Destroy(invincible);
-            InvokeRepeating("timerInvincible", 1, 1);
+
+            Destroy(powerup);
+            int rand = Random.Range(0, 2);
+            Debug.Log(rand);
+            if (rand == 0)
+            {
+                InvokeRepeating("timerInvincible", 1, 1);
+            }
+            else if (rand == 1)
+            {
+                InvokeRepeating("timerMushroom", 1, 1);
+            }
+            
         }
 
-        if (collision.gameObject.tag == "mushroom")
-        {
-            Destroy(invincible);
-            InvokeRepeating("timerMushroom", 1, 1);
-        }
-
-        if (collision.gameObject.tag == "slowdown")
-        {
-            Destroy(invincible);
-            InvokeRepeating("timerSlowdown", 1, 1);
-        }
+      
 
     }
 
     private void OnTriggerExit(Collider trigger) 
     {
-        if (trigger.gameObject.tag == "Obstacle")
+        if (trigger.gameObject.tag == "Obstacle" && isInvincible == false)
         {
 
             InvokeRepeating("timer", 1, 1);
@@ -101,45 +104,25 @@ public class playerCollision : MonoBehaviour {
     
     }
 
-    public void timerSlowdown()
-    {
-        time -= Time.deltaTime;
-
-        if (time <= 0)
-        {
-            time = 0.2f;
-            enemyM.GetComponent<enemyMovement>().enemySpeed = 13f;
-            CancelInvoke("timerSlowdown");
-
-            
-
-        }
-        else if (time < 0.2f)
-        {
-            
-            enemyM.GetComponent<enemyMovement>().enemySpeed = 6f;
-
-        }
-
-    }
+    
 
     public void timerMushroom()
     {
-        time -= Time.deltaTime;
+        timeMushroom -= Time.deltaTime;
 
-        if (time <= 0)
+        if (timeMushroom <= 0)
         {
-            time = 0.2f;
-            GetComponent<playerMovement>().jumpSpeed = 2f;
+            timeMushroom = 0.05f;
+            player.GetComponent<playerMovement>().jumpSpeed = 2f;
             CancelInvoke("timerMushroom");
 
 
 
         }
-        else if (time < 0.2f)
+        else if (timeMushroom < 0.05f)
         {
             
-            enemyM.GetComponent<enemyMovement>().enemySpeed = 4f;
+            player.GetComponent<playerMovement>().jumpSpeed = 10f;
 
         }
 
@@ -147,23 +130,27 @@ public class playerCollision : MonoBehaviour {
 
     public void timerInvincible()
     {
-        time -= Time.deltaTime;
 
-        if (time <= 0)
+       
+        timeInvicible -= Time.deltaTime;
+
+        if (timeInvicible <= 0)
         {
-            time = 0.2f;
-            enemyM.GetComponent<BoxCollider>().enabled = true;
-            enemyNM.GetComponent<BoxCollider>().isTrigger = true;
+            time = 0.08f;
+
             CancelInvoke("timerInvincible");
+            isInvincible = false;
+            player.GetComponent<BoxCollider>().isTrigger = false;
+            
 
 
 
         }
-        else if (time < 0.2f)
+        else if (timeInvicible < 0.08f)
         {
-
-            enemyM.GetComponent<BoxCollider>().enabled = false;
-            enemyNM.GetComponent<BoxCollider>().isTrigger = false;
+            
+            isInvincible = true;
+            
         }
 
     }

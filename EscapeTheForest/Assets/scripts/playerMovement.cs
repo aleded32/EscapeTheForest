@@ -35,7 +35,11 @@ public class playerMovement : MonoBehaviour {
             }
 
         }
-        
+
+        if (transform.position.y <= 3.18)
+        {
+            transform.position = new Vector3(transform.position.x, 3.18f);
+        }
         
 
     }
@@ -77,7 +81,7 @@ public class playerMovement : MonoBehaviour {
                     // transform.Translate(Vector3.up * 0 * Time.deltaTime);
                     //Debug.Log("hi");
 
-                    rb.AddForce(0, 8000 * 2 * Time.deltaTime, 0);
+                    rb.AddForce(0, 8000 * jumpSpeed * Time.deltaTime, 0);
                     isJumping = true;
 
                 }
