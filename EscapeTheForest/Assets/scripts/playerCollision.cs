@@ -17,6 +17,8 @@ public class playerCollision : MonoBehaviour {
     public AudioClip debuff;
     public GameObject player;
     public GameObject powerup;
+    public GameObject powerup2;
+    public GameObject powerup3;
     public bool isInvincible = false;
 
     private void OnTriggerEnter(Collider other)
@@ -50,8 +52,40 @@ public class playerCollision : MonoBehaviour {
             }
             
         }
+        else if (collision.gameObject.tag == "powerup2")
+        {
 
-      
+            Destroy(powerup2);
+            int rand = Random.Range(0, 2);
+            Debug.Log(rand);
+            if (rand == 0)
+            {
+                InvokeRepeating("timerInvincible", 1, 1);
+            }
+            else if (rand == 1)
+            {
+                InvokeRepeating("timerMushroom", 1, 1);
+            }
+
+        }
+        else if (collision.gameObject.tag == "powerup3")
+        {
+
+            Destroy(powerup3);
+            int rand = Random.Range(0, 2);
+            Debug.Log(rand);
+            if (rand == 0)
+            {
+                InvokeRepeating("timerInvincible", 1, 1);
+            }
+            else if (rand == 1)
+            {
+                InvokeRepeating("timerMushroom", 1, 1);
+            }
+
+        }
+
+
 
     }
 

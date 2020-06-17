@@ -16,6 +16,8 @@ TagManager:
   - mushroom
   - slowdown
   - powerup
+  - powerup2
+  - powerup3
   layers:
   - Default
   - TransparentFX
