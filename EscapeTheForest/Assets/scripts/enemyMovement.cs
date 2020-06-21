@@ -12,7 +12,7 @@ public class enemyMovement : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        player = GameObject.Find("Cube");
+        player = GameObject.Find("player");
     }
 
     // Update is called once per frame

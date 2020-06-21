@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class playerMovement : MonoBehaviour {
 
+    public Animator animation;
     public float speed = 10f;
-    public float jumpSpeed = 2;
+    public float jumpSpeed = 2f;
     public Rigidbody rb;
     public bool isJumping = false;
     public bool doubleJump = false;
@@ -30,17 +31,13 @@ public class playerMovement : MonoBehaviour {
 
             if (isPaused == false)
             {
-
+                animation.SetFloat("speed", speed);
                 transform.Translate(Vector3.right * speed * Time.deltaTime);
             }
 
         }
 
-        if (transform.position.y <= 3.18)
-        {
-            transform.position = new Vector3(transform.position.x, 3.18f);
-        }
-        
+      
 
     }
 
@@ -83,25 +80,31 @@ public class playerMovement : MonoBehaviour {
 
                     rb.AddForce(0, 8000 * jumpSpeed * Time.deltaTime, 0);
                     isJumping = true;
+                    animation.SetBool("isJumping", true);
 
                 }
-
+                
 
 
             }
             else if (isJumping == true)
             {
+                
                 if (transform.position.y <= 3.2)
                 {
 
                     isJumping = false;
-
+                    animation.SetBool("isJumping", false);
+                    animation.SetBool("isDoubleJumping", false);
                 }
 
                 else if (doubleJump == false)
                 {
-                    if (transform.position.y >= 5) isJumping = true;
-
+                    if (transform.position.y >= 5)
+                    {
+                        isJumping = true;
+                        
+                    }
                     else if (transform.position.y >= 4.2)
                     {
 
@@ -110,7 +113,7 @@ public class playerMovement : MonoBehaviour {
                         {
 
 
-
+                            animation.SetBool("isDoubleJumping", true);
                             // transform.Translate(Vector3.up * 0 * Time.deltaTime);
                             //Debug.Log("hi");
 
@@ -118,7 +121,7 @@ public class playerMovement : MonoBehaviour {
                             isJumping = true;
 
                         }
-                        
+
 
 
                     }

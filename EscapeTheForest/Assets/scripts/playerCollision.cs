@@ -20,6 +20,7 @@ public class playerCollision : MonoBehaviour {
     public GameObject powerup2;
     public GameObject powerup3;
     public bool isInvincible = false;
+    public Animator animationPlayer;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -99,7 +100,7 @@ public class playerCollision : MonoBehaviour {
             audioDebuff.clip = debuff;
             audioDebuff.Play();
 
-            if (hitCount >= 4)
+            if (hitCount >= 2)
             {
                 SceneManager.LoadScene("GameScreen");
             }
@@ -115,7 +116,7 @@ public class playerCollision : MonoBehaviour {
             time = 0.3f;
            GetComponent<playerMovement>().speed = 10f;
            CancelInvoke("timer");
-
+            animationPlayer.SetBool("hasCollided", false);
            audioDebuff.Stop();
            audio.clip = normal;
            audio.Play();
@@ -126,12 +127,12 @@ public class playerCollision : MonoBehaviour {
         {
             audio.Stop();
             GetComponent<playerMovement>().speed = 5f;
-
+            animationPlayer.SetBool("hasCollided", true);
             if (transform.position.y >= 4.2)
             {
 
              player.GetComponent<playerMovement>().doubleJump = true;
-
+             
             }
         }
       
