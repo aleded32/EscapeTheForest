@@ -19,6 +19,7 @@ public class playerCollision : MonoBehaviour {
     public GameObject powerup;
     public GameObject powerup2;
     public GameObject powerup3;
+    public GameObject slimeWave;
     public bool isInvincible = false;
     public Animator animationPlayer;
 
@@ -99,7 +100,7 @@ public class playerCollision : MonoBehaviour {
             hitCount += 1;
             audioDebuff.clip = debuff;
             audioDebuff.Play();
-
+            
             if (hitCount >= 2)
             {
                 SceneManager.LoadScene("GameScreen");
@@ -111,16 +112,17 @@ public class playerCollision : MonoBehaviour {
     {
             time -= Time.deltaTime;
         
-       if (time <= 0)
+       if (time <= 0.2)
         {
             time = 0.3f;
            GetComponent<playerMovement>().speed = 10f;
            CancelInvoke("timer");
             animationPlayer.SetBool("hasCollided", false);
-           audioDebuff.Stop();
+            slimeWave.GetComponent<SpriteRenderer>().enabled = false;
+            audioDebuff.Stop();
            audio.clip = normal;
            audio.Play();
-           player.GetComponent<playerMovement>().doubleJump = false;
+           Debug.Log("time over");
 
         }
         else if (time < 0.3f)
@@ -128,12 +130,12 @@ public class playerCollision : MonoBehaviour {
             audio.Stop();
             GetComponent<playerMovement>().speed = 5f;
             animationPlayer.SetBool("hasCollided", true);
-            if (transform.position.y >= 4.2)
-            {
-
-             player.GetComponent<playerMovement>().doubleJump = true;
+            slimeWave.GetComponent<SpriteRenderer>().enabled = true;
+            Debug.Log(time);
+        
              
-            }
+             
+            
         }
       
     
@@ -171,7 +173,7 @@ public class playerCollision : MonoBehaviour {
 
         if (timeInvicible <= 0)
         {
-            time = 0.08f;
+            time = 0.1f;
 
             CancelInvoke("timerInvincible");
             isInvincible = false;
@@ -181,7 +183,7 @@ public class playerCollision : MonoBehaviour {
 
 
         }
-        else if (timeInvicible < 0.08f)
+        else if (timeInvicible < 0.1f)
         {
             
             isInvincible = true;

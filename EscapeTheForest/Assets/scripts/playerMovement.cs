@@ -94,6 +94,7 @@ public class playerMovement : MonoBehaviour {
                 {
 
                     isJumping = false;
+                    doubleJump = false;
                     animation.SetBool("isJumping", false);
                     animation.SetBool("isDoubleJumping", false);
                 }
@@ -103,7 +104,7 @@ public class playerMovement : MonoBehaviour {
                     if (transform.position.y >= 5)
                     {
                         isJumping = true;
-                        
+                        doubleJump = true;
                     }
                     else if (transform.position.y >= 4.2)
                     {
@@ -119,6 +120,7 @@ public class playerMovement : MonoBehaviour {
 
                             rb.AddForce(0, 400 * 2 * Time.deltaTime, 0);
                             isJumping = true;
+                            
 
                         }
 

@@ -24,7 +24,7 @@ public class enemySpawning : MonoBehaviour
         {
             int rand = Random.Range(0, 2);
 
-           enemies =  Instantiate(objects[rand], new Vector3(i * 25.0f, 3.18f), Quaternion.identity);
+           enemies =  Instantiate(objects[rand], new Vector3(i * 25.0f, 3.1f), Quaternion.identity);
 
         }
     }
