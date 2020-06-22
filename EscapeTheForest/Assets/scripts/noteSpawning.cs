@@ -9,7 +9,12 @@ public class noteSpawning : MonoBehaviour {
     public GameObject notes2;
     public GameObject notes3;
     public int note;
-    
+
+    private void Start()
+    {
+        note = 0;
+    }
+
 
     private void OnCollisionEnter(Collision other) 
     {
@@ -19,7 +24,7 @@ public class noteSpawning : MonoBehaviour {
             Destroy(notes);
 
             //Debug.Log("notes");
-            note = 1;
+            note += 1;
         }
          if (other.gameObject.tag == "notes1")
         {
@@ -27,7 +32,7 @@ public class noteSpawning : MonoBehaviour {
             Destroy(notes1);
 
             //Debug.Log("notes");
-            note = 2;
+            note += 1;
 
         }
         else if (other.gameObject.tag == "notes2")
@@ -36,7 +41,7 @@ public class noteSpawning : MonoBehaviour {
             Destroy(notes2);
 
             //Debug.Log("notes");
-            note = 4;
+            note += 1;
 
 
         }
@@ -46,7 +51,7 @@ public class noteSpawning : MonoBehaviour {
             Destroy(notes3);
 
             //Debug.Log("notes");
-            note = 3;
+            note += 1;
 
         }
     }

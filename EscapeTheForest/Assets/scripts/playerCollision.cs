@@ -19,6 +19,7 @@ public class playerCollision : MonoBehaviour {
     public GameObject powerup;
     public GameObject powerup2;
     public GameObject powerup3;
+    public GameObject powerup4;
     public GameObject slimeWave;
     public bool isInvincible = false;
     public Animator animationPlayer;
@@ -35,56 +36,36 @@ public class playerCollision : MonoBehaviour {
     private void OnCollisionEnter(Collision collision)
     {
 
-       
+
 
 
         if (collision.gameObject.tag == "powerup")
         {
 
             Destroy(powerup);
-            int rand = Random.Range(0, 2);
-            Debug.Log(rand);
-            if (rand == 0)
-            {
-                InvokeRepeating("timerInvincible", 1, 1);
-            }
-            else if (rand == 1)
-            {
-                InvokeRepeating("timerMushroom", 1, 1);
-            }
-            
+            InvokeRepeating("timerInvincible", 1, 1);
+           
+
         }
         else if (collision.gameObject.tag == "powerup2")
         {
 
             Destroy(powerup2);
-            int rand = Random.Range(0, 2);
-            Debug.Log(rand);
-            if (rand == 0)
-            {
-                InvokeRepeating("timerInvincible", 1, 1);
-            }
-            else if (rand == 1)
-            {
-                InvokeRepeating("timerMushroom", 1, 1);
-            }
+            InvokeRepeating("timerMushroom", 1, 1);
+
 
         }
         else if (collision.gameObject.tag == "powerup3")
         {
 
             Destroy(powerup3);
-            int rand = Random.Range(0, 2);
-            Debug.Log(rand);
-            if (rand == 0)
-            {
-                InvokeRepeating("timerInvincible", 1, 1);
-            }
-            else if (rand == 1)
-            {
-                InvokeRepeating("timerMushroom", 1, 1);
-            }
+            InvokeRepeating("timerInvincible", 1, 1);
 
+        }
+        else if (collision.gameObject.tag == "powerup4")
+        {
+            Destroy(powerup4);
+            InvokeRepeating("timerMushroom", 1, 1);
         }
 
 
@@ -150,7 +131,7 @@ public class playerCollision : MonoBehaviour {
         if (timeMushroom <= 0)
         {
             timeMushroom = 0.05f;
-            player.GetComponent<playerMovement>().jumpSpeed = 2f;
+            player.GetComponent<playerMovement>().jumpSpeed = 1.75f;
             CancelInvoke("timerMushroom");
 
 

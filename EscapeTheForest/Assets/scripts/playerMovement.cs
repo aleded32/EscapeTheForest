@@ -6,7 +6,7 @@ public class playerMovement : MonoBehaviour {
 
     public Animator animation;
     public float speed = 10f;
-    public float jumpSpeed = 2f;
+    public float jumpSpeed = 1.75f;
     public Rigidbody rb;
     public bool isJumping = false;
     public bool doubleJump = false;
