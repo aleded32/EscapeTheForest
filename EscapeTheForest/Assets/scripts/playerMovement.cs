@@ -10,9 +10,7 @@ public class playerMovement : MonoBehaviour {
     public Rigidbody rb;
     public bool isJumping = false;
     public bool doubleJump = false;
-    public GameObject pauseMenu;
-    public bool isPaused = false;
-    bool gameStart = false;
+    public bool gameStart = false;
 
       
 
@@ -28,13 +26,8 @@ public class playerMovement : MonoBehaviour {
 
         if (gameStart == true)
         {
-
-            if (isPaused == false)
-            {
                 animation.SetFloat("speed", speed);
                 transform.Translate(Vector3.right * speed * Time.deltaTime);
-            }
-
         }
 
       
@@ -44,30 +37,8 @@ public class playerMovement : MonoBehaviour {
 
     void FixedUpdate()
     {
-        //menu control
-
-
-       if (Input.GetKey(KeyCode.P) && isPaused == false )
-        {
-
-            isPaused = true;
-        }
-
-        if (isPaused == true)
-        {
-            pauseMenu.SetActive(true);
-        }
-        else
-        {
-            pauseMenu.SetActive(false);
-        }
-
 
         //Jumping
-
-        if (isPaused == false)
-        {
-
             if (isJumping == false)
             {
                 if (Input.GetKey(KeyCode.W))
@@ -132,7 +103,7 @@ public class playerMovement : MonoBehaviour {
             }
 
 
-        }
+        
         
         
 
