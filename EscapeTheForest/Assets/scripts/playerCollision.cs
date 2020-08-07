@@ -21,6 +21,7 @@ public class playerCollision : MonoBehaviour {
     public GameObject powerup3;
     public GameObject powerup4;
     public GameObject slimeWave;
+    public Animator animator;
     public bool isInvincible = false;
     public Animator animationPlayer;
 
@@ -28,7 +29,7 @@ public class playerCollision : MonoBehaviour {
     {
         if (other.gameObject.tag == "Enemy" && isInvincible == false)
         {
-            Debug.Log(1);
+
             SceneManager.LoadScene("GameScreen");
         }
     }
@@ -44,7 +45,7 @@ public class playerCollision : MonoBehaviour {
 
             Destroy(powerup);
             InvokeRepeating("timerInvincible", 1, 1);
-           
+
 
         }
         else if (collision.gameObject.tag == "powerup2")
@@ -66,6 +67,13 @@ public class playerCollision : MonoBehaviour {
         {
             Destroy(powerup4);
             InvokeRepeating("timerMushroom", 1, 1);
+        }
+        else if (collision.gameObject.tag == "platform")
+        {
+
+            animator.SetBool("isFalling", false);
+            animator.SetBool("isJumping", false);
+            animator.SetBool("isDoubleJumping", false);
         }
 
 
@@ -103,6 +111,7 @@ public class playerCollision : MonoBehaviour {
             audioDebuff.Stop();
            audio.clip = normal;
            audio.Play();
+            hitCount = 0;
            Debug.Log("time over");
 
         }
@@ -140,7 +149,7 @@ public class playerCollision : MonoBehaviour {
         else if (timeMushroom < 0.05f)
         {
             
-            player.GetComponent<playerMovement>().jumpSpeed = 10f;
+            player.GetComponent<playerMovement>().jumpSpeed = (1.75f * 2);
 
         }
 

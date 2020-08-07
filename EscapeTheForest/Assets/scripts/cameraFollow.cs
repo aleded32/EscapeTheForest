@@ -8,7 +8,8 @@ public class cameraFollow : MonoBehaviour {
     public GameObject player;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
 
         offset = transform.position - player.transform.position;
 

@@ -18,6 +18,6 @@ public class backgroundFollow : MonoBehaviour {
     {
         playerPos = player.transform.position;
 
-        this.transform.SetPositionAndRotation(new Vector3(playerPos.x - offsetX, 11.67f, 6.1f), Quaternion.identity);
+        this.transform.SetPositionAndRotation(new Vector3(playerPos.x - offsetX, 10.67f, 6.1f), Quaternion.identity);
     }
 }

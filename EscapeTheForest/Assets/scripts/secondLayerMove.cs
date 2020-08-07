@@ -5,7 +5,7 @@ using UnityEngine;
 public class secondLayerMove : MonoBehaviour {
 
     public GameObject player;
-    float speed = 5f;
+    float speed = 4f;
 
 	// Use this for initialization
 	void Start ()
@@ -14,12 +14,11 @@ public class secondLayerMove : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update ()
+	void FixedUpdate ()
     {
         if (player.GetComponent<playerMovement>().gameStart == true)
         {
-            
-            transform.Translate(Vector3.right * speed * Time.deltaTime);
+            transform.Translate(Vector3.Normalize(Vector3.right) * speed * Time.deltaTime);
         }
     }
 }

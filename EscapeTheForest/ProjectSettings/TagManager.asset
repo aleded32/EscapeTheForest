@@ -19,6 +19,7 @@ TagManager:
   - powerup2
   - powerup3
   - powerup4
+  - platform
   layers:
   - Default
   - TransparentFX
@@ -28,7 +29,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Post Processing
   - 
   - 
   - 
