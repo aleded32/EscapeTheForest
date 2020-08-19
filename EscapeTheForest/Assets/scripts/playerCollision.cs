@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class playerCollision : MonoBehaviour {
 
@@ -10,8 +11,11 @@ public class playerCollision : MonoBehaviour {
     float timeInvicible = 0.08f;
     float timeMushroom = 0.05f;
     float timeSlowdown = 0.08f;
-    public int notes = 0;
     public AudioSource audio;
+    public Image currentBuff;
+    public Sprite jump;
+    public Sprite invicible;
+    public Sprite empty;
     public AudioSource audioDebuff;
     public AudioClip normal;
     public AudioClip debuff;
@@ -25,7 +29,12 @@ public class playerCollision : MonoBehaviour {
     public bool isInvincible = false;
     public Animator animationPlayer;
 
-    private void OnTriggerEnter(Collider other)
+    private void Update()
+    {
+        
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Enemy" && isInvincible == false)
         {
@@ -34,39 +43,51 @@ public class playerCollision : MonoBehaviour {
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-
-
-
 
         if (collision.gameObject.tag == "powerup")
         {
 
             Destroy(powerup);
-            InvokeRepeating("timerInvincible", 1, 1);
 
+            InvokeRepeating("timerInvincible", 0, 1);
+            if (time < 0.3f)
+            {
+                CancelInvoke("timer");
+            }
 
         }
         else if (collision.gameObject.tag == "powerup2")
         {
 
             Destroy(powerup2);
-            InvokeRepeating("timerMushroom", 1, 1);
-
+            InvokeRepeating("timerMushroom", 0, 1);
+            if (time < 0.3f)
+            {
+                CancelInvoke("timer");
+            }
 
         }
         else if (collision.gameObject.tag == "powerup3")
         {
 
             Destroy(powerup3);
-            InvokeRepeating("timerInvincible", 1, 1);
+            InvokeRepeating("timerInvincible", 0, 1);
+            if (time < 0.3f)
+            {
+                CancelInvoke("timer");
+            }
 
         }
         else if (collision.gameObject.tag == "powerup4")
         {
             Destroy(powerup4);
-            InvokeRepeating("timerMushroom", 1, 1);
+            InvokeRepeating("timerMushroom", 0, 1);
+            if (time < 0.3f)
+            {
+                CancelInvoke("timer");
+            }
         }
         else if (collision.gameObject.tag == "platform")
         {
@@ -80,7 +101,7 @@ public class playerCollision : MonoBehaviour {
 
     }
 
-    private void OnTriggerExit(Collider trigger) 
+    private void OnTriggerExit2D(Collider2D trigger) 
     {
         if (trigger.gameObject.tag == "Obstacle" && isInvincible == false)
         {
@@ -103,9 +124,9 @@ public class playerCollision : MonoBehaviour {
         
        if (time <= 0.2)
         {
+           
             time = 0.3f;
            GetComponent<playerMovement>().speed = 10f;
-           CancelInvoke("timer");
             animationPlayer.SetBool("hasCollided", false);
             slimeWave.GetComponent<SpriteRenderer>().enabled = false;
             audioDebuff.Stop();
@@ -113,6 +134,10 @@ public class playerCollision : MonoBehaviour {
            audio.Play();
             hitCount = 0;
            Debug.Log("time over");
+            
+
+            CancelInvoke("timer");
+
 
         }
         else if (time < 0.3f)
@@ -121,7 +146,7 @@ public class playerCollision : MonoBehaviour {
             GetComponent<playerMovement>().speed = 5f;
             animationPlayer.SetBool("hasCollided", true);
             slimeWave.GetComponent<SpriteRenderer>().enabled = true;
-            Debug.Log(time);
+           
         
              
              
@@ -139,6 +164,7 @@ public class playerCollision : MonoBehaviour {
 
         if (timeMushroom <= 0)
         {
+            currentBuff.sprite = empty;
             timeMushroom = 0.05f;
             player.GetComponent<playerMovement>().jumpSpeed = 1.75f;
             CancelInvoke("timerMushroom");
@@ -148,7 +174,7 @@ public class playerCollision : MonoBehaviour {
         }
         else if (timeMushroom < 0.05f)
         {
-            
+            currentBuff.sprite = jump;
             player.GetComponent<playerMovement>().jumpSpeed = (1.75f * 2);
 
         }
@@ -163,19 +189,19 @@ public class playerCollision : MonoBehaviour {
 
         if (timeInvicible <= 0)
         {
-            time = 0.1f;
-
+            time = 0.06f;
+            currentBuff.sprite = empty;
             CancelInvoke("timerInvincible");
             isInvincible = false;
-            player.GetComponent<BoxCollider>().isTrigger = false;
+            player.GetComponent<BoxCollider2D>().isTrigger = false;
             
 
 
 
         }
-        else if (timeInvicible < 0.1f)
+        else if (timeInvicible < 0.06f)
         {
-            
+            currentBuff.sprite = invicible;
             isInvincible = true;
             
         }

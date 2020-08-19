@@ -8,6 +8,7 @@ public class powerupPositioning : MonoBehaviour {
     public GameObject powerup2;
     public GameObject powerup3;
     public GameObject powerup4;
+    public GameObject pointLight;
     GameObject blank;
     public GameObject[] powerups;
     private float[] Yposition;
@@ -16,7 +17,7 @@ public class powerupPositioning : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-
+        
         powerups = new GameObject[5];
         Yposition = new float[2];
         powerups[0] = blank;
@@ -39,6 +40,7 @@ public class powerupPositioning : MonoBehaviour {
                 int randMultiplyer = Random.Range(1, 3);
 
                 powerups[i].transform.position = new Vector3((i*randMultiplyer) * 60f, Yposition[randYposition], -0.03f);
+                Instantiate(pointLight, new Vector3((i * randMultiplyer) * 60f, Yposition[randYposition], -0.036f), Quaternion.identity);
             
         }
 

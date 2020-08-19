@@ -5,9 +5,9 @@ using UnityEngine;
 public class playerMovement : MonoBehaviour {
 
     public Animator animation;
-    public float speed = 10f;
+    public float speed = 8f;
     public float jumpSpeed = 1.75f;
-    public Rigidbody rb;
+    public Rigidbody2D rb;
     public bool isJumping = false;
     public bool doubleJump = false;
     public bool gameStart = false;
@@ -35,13 +35,13 @@ public class playerMovement : MonoBehaviour {
         //Jumping
         if (isJumping == false)
             {
-                if (Input.GetKey(KeyCode.W))
+                if (Input.GetKey(KeyCode.Space))
                 {
 
 
 
                     
-                    rb.AddForce(0, 8000 * jumpSpeed * Time.deltaTime, 0);
+                    rb.AddForce(new Vector2(0, 8000 * jumpSpeed * Time.deltaTime));
                     isJumping = true;
                     animation.SetBool("isJumping", true);
 
@@ -75,14 +75,14 @@ public class playerMovement : MonoBehaviour {
                     {
 
 
-                        if (Input.GetKey(KeyCode.W))
+                        if (Input.GetKey(KeyCode.Space))
                         {
 
 
                             animation.SetBool("isDoubleJumping", true);
                             
 
-                            rb.AddForce(0, 400 * 2 * Time.deltaTime, 0);
+                            rb.AddForce(new Vector2(0, 400 * 2 * Time.deltaTime));
                             isJumping = true;
                             
 

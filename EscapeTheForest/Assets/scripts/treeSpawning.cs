@@ -9,23 +9,26 @@ public class treeSpawning : MonoBehaviour {
     public GameObject trees;
     public GameObject leaves;
     public GameObject leaf;
-
+    public GameObject backgroundTrees;
 
     // Use this for initialization
     public void Start()
     {
-        objects = new GameObject[2];
+        objects = new GameObject[3];
         objects[0] = tree;
         objects[1] = leaf;
+        objects[2] = backgroundTrees;
 
 
-        for (int i = 0; i < 20; i++)
+        for (int i = 1; i <= 35; i++)
         {
-            int rand = Random.Range(0, 2);
+           
 
-            trees = Instantiate(objects[0], new Vector3(i * 15.0f, 11.8f, 1.0f), Quaternion.identity);
+            trees = Instantiate(objects[0], new Vector3(i * 15.0f, 11f, 1.0f), Quaternion.identity);
+        
+            Instantiate(objects[1], new Vector3(i * 15.0f, 11.6f, 0f), Quaternion.identity);
 
-            Instantiate(objects[1], new Vector3(i * 15.0f, 11.6f, 0.5f), Quaternion.identity);
+            Instantiate(objects[2], new Vector3(i * 8.0f, 10.35f, 3.09f), Quaternion.identity);
 
         }
     }

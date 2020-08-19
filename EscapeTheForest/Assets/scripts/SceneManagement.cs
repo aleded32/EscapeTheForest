@@ -15,5 +15,10 @@ public class SceneManagement : MonoBehaviour {
         Debug.Log("Quit");
         Application.Quit();
 
-            }
+    }
+
+    public void prevScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+    }
 }

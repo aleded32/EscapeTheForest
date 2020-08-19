@@ -21,7 +21,7 @@ public class StartupScreenPlay : MonoBehaviour {
     {
         if (isPopScreenPlayed == false)
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Space))
             {
                 animator.SetBool("isPressed", true);
                 InvokeRepeating("setStartMenuActive", 1, 1);

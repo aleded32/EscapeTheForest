@@ -19,9 +19,37 @@ public class SettingsMenu : MonoBehaviour {
     public Sprite soundFxnewhighlightedSpriteOff;
     public Sprite soundFxnewhighlightedSpriteOn;
     public bool isSoundFXOff = false;
-    public GameObject Audio;
     public GameObject PauseMenuUI;
     public GameObject settingMenuUI;
+    float audioVolume;
+
+    public void Awake()
+    {
+        PlayerPrefs.SetFloat("currentVolume", 0.033f);
+    }
+
+    public void Update()
+    {
+
+
+        
+
+
+        if (isMusicOff == false)
+        {
+            PlayerPrefs.SetFloat("currentVolume", 0.033f);
+        }
+        else
+        {
+            PlayerPrefs.SetFloat("currentVolume", 0f);
+
+
+        }
+        GameObject.Find("audio").GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("currentVolume");
+        Debug.Log(audioVolume);
+    }
+    
+
 
     public void MusicChange()
     {
@@ -33,8 +61,8 @@ public class SettingsMenu : MonoBehaviour {
             MusicOffSs.highlightedSprite = newhighlightedSpriteOff;
             musicButton.spriteState = MusicOffSs;
             isMusicOff = true;
-            Audio.GetComponent<AudioSource>().volume = 0.0f;
-            
+           
+
         }
         else if(isMusicOff == true)
         {
@@ -43,7 +71,7 @@ public class SettingsMenu : MonoBehaviour {
             MusicOffSs.highlightedSprite = newhighlightedSpriteOn;
             musicButton.spriteState = MusicOffSs;
             isMusicOff = false;
-            Audio.GetComponent<AudioSource>().volume = 0.033f;
+            
         }
         
     }

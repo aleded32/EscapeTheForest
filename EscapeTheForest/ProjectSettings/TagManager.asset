@@ -20,6 +20,7 @@ TagManager:
   - powerup3
   - powerup4
   - platform
+  - audio
   layers:
   - Default
   - TransparentFX

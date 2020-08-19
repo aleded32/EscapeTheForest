@@ -6,20 +6,41 @@ using UnityEngine.UI;
 public class scoreSystem : MonoBehaviour {
 
 
-    int currentScore;
+   
     public GameObject player;
     public Text scoreText;
-	// Use this for initialization
-	void Start () {
+    
 
-        currentScore = 0;
-	}
+    public int currentScore = 0;
+    float timeInterval;
+
+    // Use this for initialization
+    void Start() {
+
+    }
+
+    // Update is called once per frame
+    private void Update()
+    {
+        timeInterval += Time.deltaTime;
+        if (timeInterval >= 0.25 && player.transform.position.x >= 1) 
+        {
+            currentScore++;
+            timeInterval = 0;
+        }
+      
+
+
+       
+
+
+        scoreText.text = "Score: " +  currentScore;
+
+
+    }
+
+   
 	
-	// Update is called once per frame
-	void Update () {
 
-
-        currentScore = (int)player.transform.position.x;
-        scoreText.text = "Score: " + currentScore;
-	}
+   
 }

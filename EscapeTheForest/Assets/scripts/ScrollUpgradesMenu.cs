@@ -8,9 +8,16 @@ public class ScrollUpgradesMenu : MonoBehaviour {
     public GameObject up;
     public GameObject down;
     public GameObject upgradeTree;
+    public GameObject upgradeMenu;
     public bool isUpPressed = false;
     public bool isDownPressed = false;
-    private int speed = 300;
+   
+
+
+    public Animator animator;
+    public Animator animatorBack;
+    public Animator animatorUpgradeText;
+    
 
 	void Start ()
     {
@@ -24,32 +31,30 @@ public class ScrollUpgradesMenu : MonoBehaviour {
         if (isUpPressed == true)
         {
             up.SetActive(false);
+            animatorUpgradeText.Play("moveDownText2");
+            animatorBack.Play("moveUpText");
+            animator.Play("MoveDown");  
+            isUpPressed = false;
+            down.SetActive(true);
 
-            if (upgradeTree.transform.position.y > 135)
-            {
-                
-                upgradeTree.transform.Translate(Vector2.down * speed * Time.deltaTime);
-                down.SetActive(true);
-            }
-          
+
         }
         else if (isDownPressed == true)
         {
-            up.SetActive(true);
-
-            if (upgradeTree.transform.position.y > -193)
-            {
-                if (upgradeTree.transform.position.y < 635)
-                {
-                    upgradeTree.transform.Translate(Vector3.up * speed * Time.deltaTime);
-                    down.SetActive(false);
-                    
-                }
-                   
-
-            }
             
+            up.SetActive(true);
+            animatorUpgradeText.Play("moveUpText2");
+            animatorBack.Play("moveDownText");
+            animator.Play("moveUp");
+            isDownPressed = false;
+            down.SetActive(false);
+            
+
+
         }
+
+       
+       
     }
 
 
@@ -65,4 +70,6 @@ public class ScrollUpgradesMenu : MonoBehaviour {
         isDownPressed = false;
             
     }
+
+    
 }
